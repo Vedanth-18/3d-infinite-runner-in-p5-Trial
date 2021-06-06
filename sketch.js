@@ -10,10 +10,11 @@ let centerY;
 let centerZ;
 let h = 20;
 var Xpos;
-var Ypos;
+var cam;
+
 
 function preload(){
-  bg = loadModel("untitled.obj");
+  bg = loadModel("mars terrain.obj");
 }
 
 function setup() {
@@ -29,20 +30,23 @@ function setup() {
     sliderGroup[i].style('width', '80px');
   }
   zooming=180;
-  Xpos = -900;
+  //Xpos = -900;
   Ypos = 0;
+  Xpos = -width/2;
+  // cam = createCamera();
 }
 
 function draw() {
   background(220);
-  translate(0,0);
+  //translate(0,0, mouseX);
   //rotateX(frameCount * 0.01);
   //rotateY(frameCount * 0.01);
   orbitControl(1,1,1);
   scale(45);
   model(bg);
-  
-  
+  //modelX(0,0,0);
+  // cam.setPosition(sin(frameCount / 60) * 200, 0, 100);
+  // perspective();
   // X = sliderGroup[0].value();
   // Y = sliderGroup[1].value();
   // Z = sliderGroup[2].value();
@@ -52,20 +56,30 @@ function draw() {
   //camera(X, Y, Z, centerX, centerY, centerZ, 0, 1, 0);
    stroke(255);
    fill(255, 102, 94);
+   translate(0, 0, mouseX);
+   //console.log(modelX);
   //box(85);
   //rotateY(90);
   //rotateZ(90);
   //rotate(180);
   
-   if(frameCount%1===0){
-     if(Xpos<0){
-       Xpos+=6;
-     }
-     if(Xpos===0){
-       Xpos= -600;
-     }
-   }
-  camera(Xpos, -30, 0, 0,0,0,1,1,0);
+  //  if(frameCount%1===0){
+  //    if(Xpos<0){
+  //      Xpos+=6;
+  //    }
+  //    if(Xpos===0){
+  //      Xpos= -600;
+  //    }
+  //  }, (height/2) / tan(PI/6),width/2, height/2, 100, 0,1,0
+  
+  if(Xpos>200){
+    Xpos = -width/2;
+  }
+  if(frameCount%1===0){
+    Xpos=Xpos+10;
+    
+  }
+   camera((Xpos) +30 , -height/8, 0, width, height/6,0,0,1,0);
   console.log(Xpos);
   
 }
