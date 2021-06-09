@@ -11,10 +11,11 @@ let centerZ;
 let h = 20;
 var Xpos;
 var cam;
+var cam
 
 
 function preload(){
-  bg = loadModel("mars terrain.obj");
+  bg = loadModel("untitled.obj");
 }
 
 function setup() {
@@ -37,7 +38,7 @@ function setup() {
 }
 
 function draw() {
-  background(220);
+  background(0);
   //translate(0,0, mouseX);
   //rotateX(frameCount * 0.01);
   //rotateY(frameCount * 0.01);
@@ -72,14 +73,15 @@ function draw() {
   //    }
   //  }, (height/2) / tan(PI/6),width/2, height/2, 100, 0,1,0
   
-  if(Xpos>200){
-    Xpos = -width/2;
-  }
-  if(frameCount%1===0){
-    Xpos=Xpos+10;
+    if(Xpos>200){
+      Xpos = -width/2;
+    }
+   if(frameCount%1===0){
+     Xpos=Xpos+10;
     
-  }
+   }
    camera((Xpos) +30 , -height/8, 0, width, height/6,0,0,1,0);
   console.log(Xpos);
+  //camera((Xpos) +30 , -height/8, 0, width, height/6,0,0,1,0);
   
 }
