@@ -11,7 +11,8 @@ let centerZ;
 let h = 20;
 var Xpos;
 var cam;
-var cam
+var camX;
+
 
 
 function preload(){
@@ -57,7 +58,7 @@ function draw() {
   //camera(X, Y, Z, centerX, centerY, centerZ, 0, 1, 0);
    stroke(255);
    fill(255, 102, 94);
-   translate(0, 0, mouseX);
+   //translate(0, 0, mouseX);
    //console.log(modelX);
   //box(85);
   //rotateY(90);
@@ -73,15 +74,24 @@ function draw() {
   //    }
   //  }, (height/2) / tan(PI/6),width/2, height/2, 100, 0,1,0
   
-    if(Xpos>200){
-      Xpos = -width/2;
+     if(Xpos>200){
+       Xpos = -width/2;
+     }
+    if(frameCount%1===0){
+      Xpos=Xpos+10;
     }
-   if(frameCount%1===0){
-     Xpos=Xpos+10;
-    
-   }
-   camera((Xpos) +30 , -height/8, 0, width, height/6,0,0,1,0);
-  console.log(Xpos);
-  //camera((Xpos) +30 , -height/8, 0, width, height/6,0,0,1,0);
+
+
+
+
+
+
+
+
+  // perspective(PI / 2.0, width /height);
+   //camX = map(mouseX, 0, width/10, -200, 200);
+   //camera((Xpos) +30 , -height/8, 0);
+  console.log(orbitControl);
+  camera((Xpos) +30 , -height/8, 0, width, height/6,0,0,1,0);
   
 }
