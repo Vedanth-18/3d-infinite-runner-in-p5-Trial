@@ -1,22 +1,39 @@
-var bgSprite, boxSprite;
+//Matter JS.. 
+
+var Mterrain;
 var cam;
+var bgImg;
+var zpos;
 
 function preload(){
-  bg = loadModel("untitled3.obj", true);
+  Mterrain = loadModel("untitled3.obj", true);
+  bgImg = loadImage("Mars landscape.jpg");
 }
 
 function setup() {
   createCanvas(displayWidth, displayHeight, WEBGL);
  
+
+  zpos =0;
    cam = createCamera();
    debugMode(2100, 10,0 ,0, 0, 200, 0, 0, 0);
 }
 
 function draw() {
-  background(0);
+  background(10.0);
+  push();
+  if(frameCount%2===0){
+    zpos = zpos -4;
+  }
+  texture(bgImg);
+  translate(0,0, zpos);
+  plane(displayWidth-10, displayHeight-10);
+  pop();
+  smooth();
+  //image(bgImg, displayWidth/2, displayHeight/2, displayWidth, displayHeight);
   orbitControl(1,1,1);
-  scale(5);
-  model(bg);
+  scale(6);
+  model(Mterrain);
   stroke(255);
   fill(255, 102, 94);  
   cam.move(0, 0, -2);
