@@ -27,7 +27,7 @@ function draw() {
   }
   texture(bgImg);
   translate(0,0, zpos);
-  plane(displayWidth-10, displayHeight-10);
+  plane(displayWidth, displayHeight);
   pop();
   smooth();
   //image(bgImg, displayWidth/2, displayHeight/2, displayWidth, displayHeight);
