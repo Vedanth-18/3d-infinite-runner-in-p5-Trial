@@ -1,9 +1,17 @@
 //Matter JS.. 
+const Engine = Matter.Engine;
+const World = Matter.World;
+const Bodies = Matter.Bodies;
+const Body = Matter.Body;
+const Constraint = Matter.Constraint;
+var engine, world;
+//MatterJS_END
 
 var Mterrain;
 var cam;
 var bgImg;
 var zpos;
+var bodyOne;
 
 function preload(){
   Mterrain = loadModel("untitled3.obj", true);
@@ -11,16 +19,24 @@ function preload(){
 }
 
 function setup() {
-  createCanvas(displayWidth, displayHeight, WEBGL);
- 
-
-  zpos =0;
+   //MatterJS_SETUP
+   engine = Engine.create();
+   world = engine.world;
+   //MatterJS_END
+   createCanvas(displayWidth, displayHeight, WEBGL);
+   zpos =0;
    cam = createCamera();
    debugMode(2100, 10,0 ,0, 0, 200, 0, 0, 0);
+   //MatterJS
+   bodyOne = new Sample(displayWidth/2, displayHeight/2, 50, 50);
+   //MatterJS_END
 }
 
 function draw() {
   background(10.0);
+  //MatterJS
+  bodyOne.display();
+  //MatterJS_END
   push();
   if(frameCount%2===0){
     zpos = zpos -4;
