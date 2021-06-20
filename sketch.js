@@ -7,52 +7,84 @@ const Constraint = Matter.Constraint;
 var engine, world;
 //MatterJS_END
 
+//Var
 var Mterrain;
 var cam;
 var bgImg;
 var zpos;
 var bodyOne;
+//Var_END
 
+//Preload
 function preload(){
   Mterrain = loadModel("untitled3.obj", true);
   bgImg = loadImage("Mars landscape.jpg");
 }
+//Preload_END
 
 function setup() {
    //MatterJS_SETUP
    engine = Engine.create();
    world = engine.world;
    //MatterJS_END
+
+   //Canvas
    createCanvas(displayWidth, displayHeight, WEBGL);
+   //CanvasEND
+   //Cam
    zpos =0;
    cam = createCamera();
+   //Cam_END
+
+   //DebugModeON
    debugMode(2100, 10,0 ,0, 0, 200, 0, 0, 0);
+   //DebugModeON_END
+
    //MatterJS
    bodyOne = new Sample(displayWidth/2, displayHeight/2, 50, 50);
    //MatterJS_END
 }
 
 function draw() {
+  //BackgroundColour
   background(10.0);
+  //BackgroundColour_END
+
   //MatterJS
   bodyOne.display();
   //MatterJS_END
+
+  //BG
   push();
-  if(frameCount%2===0){
-    zpos = zpos -4;
+  if(frameCount%2===0 && frameCount<488){
+    zpos = zpos -2.7;
   }
   texture(bgImg);
   translate(0,0, zpos);
   plane(displayWidth, displayHeight);
   pop();
+  //BG_END
+
+  //Smooth
   smooth();
-  //image(bgImg, displayWidth/2, displayHeight/2, displayWidth, displayHeight);
+  //Smooth_END
+  
+  //OrbitalControl
   orbitControl(1,1,1);
+  //OrbitalControl_END
+
+  //Mterrain
   scale(6);
   model(Mterrain);
   stroke(255);
-  fill(255, 102, 94);  
-  cam.move(0, 0, -2);
+  fill(255, 102, 94); 
+  //Mterrain_END
+
+  //CameraMovementCondition..
+  if(frameCount<488){
+    cam.move(0, 0, -1.6);
+  }
+  //CameraMovementCondition.._END
 }
 
 
@@ -128,3 +160,6 @@ function draw() {
   //   sliderGroup[i].position(10, height + h);
   //   sliderGroup[i].style('width', '80px');
   // }
+  //BG
+  //image(bgImg, displayWidth/2, displayHeight/2, displayWidth, displayHeight);
+  //BG_END
