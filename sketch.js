@@ -13,12 +13,17 @@ var cam;
 var bgImg;
 var zpos;
 var bodyOne;
+var sampleVar;
+var SampleVar2;
+var rover;
+var zpos2;
 //Var_END
 
 //Preload
 function preload(){
   Mterrain = loadModel("untitled3.obj", true);
   bgImg = loadImage("Mars landscape.jpg");
+  rover = loadImage("rover.gif");
 }
 //Preload_END
 
@@ -30,18 +35,21 @@ function setup() {
 
    //Canvas
    createCanvas(displayWidth, displayHeight, WEBGL);
+   //sampleVar = createGraphics(500, -500, P2D);
+
    //CanvasEND
    //Cam
    zpos =0;
+   zpos2 =20;
    cam = createCamera();
    //Cam_END
 
    //DebugModeON
-   debugMode(2100, 10,0 ,0, 0, 200, 0, 0, 0);
+   //debugMode(2100, 10,0 ,0, 0, 200, 0, 0, 0);
    //DebugModeON_END
 
    //MatterJS
-   bodyOne = new Sample(displayWidth/2, displayHeight/2, 50, 50);
+   //bodyOne = new Sample(displayWidth/2-683, displayHeight/2-420, 160, 140);
    //MatterJS_END
 }
 
@@ -51,18 +59,21 @@ function draw() {
   //BackgroundColour_END
 
   //MatterJS
-  bodyOne.display();
+  //bodyOne.display();
   //MatterJS_END
 
+
+  //sampleVar.background("WHITE");
+  //image(sampleVar, 250, 250, 250, 250);
   //BG
-  push();
-  if(frameCount%2===0 && frameCount<488){
-    zpos = zpos -2.7;
-  }
-  texture(bgImg);
-  translate(0,0, zpos);
-  plane(displayWidth, displayHeight);
-  pop();
+  // push();
+  // if(frameCount%2===0 && frameCount<488){
+  //   zpos = zpos -2.7;
+  // }
+  // texture(bgImg);
+  // translate(0,0, zpos);
+  // plane(displayWidth, displayHeight);
+  // pop();
   //BG_END
 
   //Smooth
@@ -75,15 +86,33 @@ function draw() {
 
   //Mterrain
   scale(6);
+  translate(0,0,50);
   model(Mterrain);
   stroke(255);
   fill(255, 102, 94); 
   //Mterrain_END
 
-  //CameraMovementCondition..
-  if(frameCount<488){
-    cam.move(0, 0, -1.6);
+  if(frameCount%2===0){
+    zpos2= zpos2 +0.3;
   }
+  push();
+  texture(rover);
+  noStroke();
+  if(frameCount%400===0){
+    zpos2=-40;
+  }
+  translate(0,0, zpos2);
+  plane(20, 16);
+  pop();
+
+  if(frameCount%400===0){
+     cam.setPosition(0,0,300);
+  }
+
+  //CameraMovementCondition..
+  // if(frameCount<488){
+     cam.move(0, 0, 0.9);
+  // }
   //CameraMovementCondition.._END
 }
 
@@ -163,3 +192,4 @@ function draw() {
   //BG
   //image(bgImg, displayWidth/2, displayHeight/2, displayWidth, displayHeight);
   //BG_END
+  //cam.setPosition(0,0,0);
