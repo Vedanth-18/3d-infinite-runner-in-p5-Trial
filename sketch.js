@@ -22,7 +22,6 @@ var zpos2;
 //Preload
 function preload(){
   Mterrain = loadModel("untitled3.obj", true);
-  //bgImg = loadImage("Mars landscape.jpg");
   rover = loadImage("rover.gif");
 }
 //Preload_END
