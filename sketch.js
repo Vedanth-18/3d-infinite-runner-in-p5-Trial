@@ -22,7 +22,7 @@ var zpos2;
 //Preload
 function preload(){
   Mterrain = loadModel("untitled3.obj", true);
-  bgImg = loadImage("Mars landscape.jpg");
+  //bgImg = loadImage("Mars landscape.jpg");
   rover = loadImage("rover.gif");
 }
 //Preload_END
@@ -86,7 +86,7 @@ function draw() {
 
   //Mterrain
   scale(6);
-  translate(0,0,50);
+  translate(0,0,60);
   model(Mterrain);
   stroke(255);
   fill(255, 102, 94); 
@@ -99,7 +99,7 @@ function draw() {
   texture(rover);
   noStroke();
   if(frameCount%400===0){
-    zpos2=-40;
+    zpos2=-50;
   }
   translate(0,0, zpos2);
   plane(20, 16);
