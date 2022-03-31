@@ -7,6 +7,8 @@ const Constraint = Matter.Constraint;
 var engine, world;
 //MatterJS_END
 
+var gameState;
+
 //Var
 var Mterrain;
 var cam;
@@ -31,6 +33,8 @@ function setup() {
    engine = Engine.create();
    world = engine.world;
    //MatterJS_END
+
+   gameState === 2;
 
    //Canvas
    createCanvas(displayWidth, displayHeight, WEBGL);
@@ -83,7 +87,8 @@ function draw() {
   orbitControl(1,1,1);
   //OrbitalControl_END
 
-  //Mterrain
+  if(gameState === 2){
+    //Mterrain
   scale(6);
   translate(0,0,60);
   model(Mterrain);
@@ -113,6 +118,10 @@ function draw() {
      cam.move(0, 0, 0.9);
   // }
   //CameraMovementCondition.._END
+  }
+  
+
+  
 }
 
 
